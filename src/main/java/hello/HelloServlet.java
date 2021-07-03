@@ -5,6 +5,7 @@
  */
 package hello;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
@@ -120,6 +121,9 @@ public class HelloServlet extends HttpServlet {
             throws ServletException, IOException {
         String msg = "";
         int hora = TestaHora();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        String horaStr = new String(LocalTime.now().format(dtf));
+        
         String lang = request.getParameter("lang");
         if(lang==null)
             lang = "pt";
@@ -222,6 +226,7 @@ public class HelloServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet HelloServlet</h1>");
             out.println("<p>" + msg + "</p>");
+            out.println("<p>" + horaStr + "</p>");
             out.println("</body>");
             out.println("</html>");
         }
