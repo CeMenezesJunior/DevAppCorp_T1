@@ -122,7 +122,7 @@ public class HelloServlet extends HttpServlet {
         String msg = "";
         int hora = TestaHora();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-        String horaStr = new String(LocalTime.now().format(dtf));
+        String horaStr = new String(LocalTime.now().minusHours(3).format(dtf));
         
         String lang = request.getParameter("lang");
         if(lang==null)
@@ -233,7 +233,7 @@ public class HelloServlet extends HttpServlet {
     }
     
     private int TestaHora(){
-        LocalTime horaAgora = LocalTime.now();
+        LocalTime horaAgora = LocalTime.now().minusHours(3);
         LocalTime horaTarde = LocalTime.parse("12:00:00");
         LocalTime horaNoite = LocalTime.parse("18:00:00");
         int isManha = horaAgora.compareTo(horaTarde);
